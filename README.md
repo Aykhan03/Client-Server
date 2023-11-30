@@ -1,5 +1,27 @@
-The two cpp files are meant to provide basic communication between clients and a server. 
+# Client-Server Communication System
 
-server_client_fifo.cpp uses FIFOs as a way to provide communication between client and server. First, the user must create a server by running the file with a "-s" as the second parameter. Then, the user can create clients by running the file with a "-c" as second paremeter, an integer id number as third parameter, and a file name as the last. This file will ignore anything beginning with a "#" and must contain actions that the client must request from the server. Each valid line must start with a number. The client will only read lines whose first number matches with their id number. The second part of each line must contain an action/packet which would be either: GET, PUT, DELETE, GTIME, DELAY, QUIT. If any of the actions are GET, PUT, or DELETE a file name must be given after it on the same line. If the action is DELAY, an integer value must be written after it and the client will sleep for the duration of that time in milliseconds. This is the file that the client will request the server to either get, put, or delete. These files are arbitrary so any name works. The server also takes input from standard input until the user terminates the session. The only inputs it will allow is "list" and "quit." List will list all the files currently stored in the server as well the clients that own those files. The server will terminate and close client FIFOs when "quit" is typed. 
+## Overview
+This project includes two C++ programs (`server_client_fifo.cpp` and `server_client_socket.cpp`) that implement basic client-server communication models using FIFOs and TCP/IP sockets, respectively.
 
-Before running, the user must make the FIFOs on their own and their names must be specific (I have provided this in the makefile). This code is limited by the fact that users must make FIFOs that match the file name used for the open system call, meaning only 3 clients can be made. The server makes sure to read and write only to the specific id number of that client. 
+### `server_client_fifo.cpp`
+- **Mode of Operation**: Run in server mode with `-s` and in client mode with `-c`.
+- **Client Requests**: Reads actions from a file and sends requests like GET, PUT, DELETE, GTIME, DELAY, QUIT.
+- **Server Functionality**: Handles file operations and system time requests, and supports commands like 'list' and 'quit'.
+- **Communication**: Uses FIFOs for inter-process communication.
+- **Limitations**: Supports up to 3 clients, limited by the FIFO creation process.
+
+### `server_client_socket.cpp`
+- **Socket-Based Communication**: Implements client-server communication over a network using TCP/IP sockets.
+- **Flexible Client-Server Interaction**: Handles various requests including file operations and system time inquiries.
+- **Robust File Handling**: Enables file contents to be sent and received between clients and server.
+- **Server Management**: Listens and manages multiple client connections efficiently.
+- **Usage**: Server mode with `-s` and port number; client mode with `-c`, client ID, input file, server name, and port number.
+
+## Getting Started
+Before running the programs, ensure that the required FIFOs are created for `server_client_fifo.cpp` and that the network configuration is correctly set up for `server_client_socket.cpp`.
+
+## Contributions
+Contributions are welcome. Please feel free to submit pull requests or open issues to discuss proposed changes or enhancements.
+
+## License
+[Insert License Information Here]
