@@ -20,8 +20,3 @@ This project includes two C++ programs (`server_client_fifo.cpp` and `server_cli
 ## Getting Started
 Before running the programs, ensure that the required FIFOs are created for `server_client_fifo.cpp` and that the network configuration is correctly set up for `server_client_socket.cpp`.
 
-## Contributions
-Contributions are welcome. Please feel free to submit pull requests or open issues to discuss proposed changes or enhancements.
-
-## License
-[Insert License Information Here]
